@@ -1,5 +1,6 @@
 using Catalog.API.Data;
 using Catalog.API.Models;
+using Catalog.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,8 @@ builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>(_ =>
                   .GetSection(nameof(DatabaseSettings))
                   .Get<DatabaseSettings>());
 builder.Services.AddTransient<ICatalogContext, CatalogContext>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
 
 var app = builder.Build();
 
