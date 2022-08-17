@@ -14,6 +14,17 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
 
+  redis:
+    image: bitnami/redis
+    container_name: redis
+    command: redis-server --requirepass password
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+
   catalog.api:
     container_name: catalog.api
     depends_on:
@@ -23,8 +34,19 @@ services:
       - "DatabaseSettings:ConnectionString=mongodb://admin:admin@catalogdb:27017"
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "8000:80"
-      - "4443:443"
+      - "5000:80"
+      - "5001:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  basket.api:
+    container_name: basket.api
+    depends_on:
+      - redis 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "5002:80"
+      - "5003:443"

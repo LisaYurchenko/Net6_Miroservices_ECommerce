@@ -18,3 +18,8 @@ C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\M
 C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\MongoDB.Libmongocrypt.dll
 C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\DnsClient.dll
 C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\SharpCompress.dll
+C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\Basket.API.dll
+C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\Basket.API.deps.json
+C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\Basket.API.runtimeconfig.json
+C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\Basket.API.exe
+C:\Users\amoskalets\Documents\GitHub\Net6_Miroservices_ECommerce\src\bin\Debug\Basket.API.pdb
