@@ -15,8 +15,8 @@ builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>(_ =>
               builder.Configuration
                   .GetSection(nameof(DatabaseSettings))
                   .Get<DatabaseSettings>());
-builder.Services.AddTransient<ICatalogContext, CatalogContext>();
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICatalogContext, CatalogContext>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 var app = builder.Build();

@@ -2,14 +2,9 @@ namespace Basket.API.Models
 {
   public class ShoppingCart
   {
-    public ShoppingCart()
-    {
-
-    }
-
     public ShoppingCart(string username)
     {
-
+      Username = username;
     }
 
     public string Username { get; set; }

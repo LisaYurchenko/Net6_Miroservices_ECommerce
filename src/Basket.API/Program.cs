@@ -1,8 +1,22 @@
+using Basket.API.Data;
+using Basket.API.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+var redisSettings = builder.Configuration
+  .GetSection(nameof(RedisSettings))
+  .Get<RedisSettings>();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+  options.Configuration = redisSettings.ConnectionString;
+});
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
