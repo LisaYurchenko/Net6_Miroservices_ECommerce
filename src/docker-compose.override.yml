@@ -25,6 +25,16 @@ services:
       - $PWD/redis-data:/var/lib/redis
       - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
 
+  portainer:
+    container_name: portiner
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer_data:/data"
+
   catalog.api:
     container_name: catalog.api
     depends_on:
@@ -50,3 +60,33 @@ services:
     ports:
       - "5002:80"
       - "5003:443"
+
+  discount.api:
+    container_name: discount.api
+    depends_on:
+      - postgres 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - "DatabaseSettings:ConnectionString=Server=postgres;Port=5432;Database=DiscountDb;User Id=admin;Password=example;"
+    ports:
+      - "5004:80"
+      - "5005:443"
+
+  postgres:
+    container_name: postgres
+    restart: always
+    ports:
+     - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: DiscountDb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080

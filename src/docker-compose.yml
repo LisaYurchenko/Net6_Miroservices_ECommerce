@@ -8,6 +8,9 @@ services:
   redis:
     image: bitnami/redis
 
+  portainer:
+    image: portainer/portainer-ce
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -20,5 +23,20 @@ services:
       context: .
       dockerfile: Basket.API/Dockerfile
 
+
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discount
+    build:
+      context: .
+      dockerfile: Discount.API/Dockerfile
+
+  postgres:
+    image: postgres
+
+  adminer:
+    image: adminer
+
 volumes:
   catalogdb_data:
+  portainer_data:
+  postgres_data:
