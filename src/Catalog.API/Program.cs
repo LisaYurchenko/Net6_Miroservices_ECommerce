@@ -18,7 +18,6 @@ builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>(_ =>
 builder.Services.AddScoped<ICatalogContext, CatalogContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
