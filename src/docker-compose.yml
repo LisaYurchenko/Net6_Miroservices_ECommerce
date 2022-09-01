@@ -23,12 +23,17 @@ services:
       context: .
       dockerfile: Basket.API/Dockerfile
 
-
   discount.api:
     image: ${DOCKER_REGISTRY-}discount
     build:
       context: .
       dockerfile: Discount.API/Dockerfile
+
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: Discount.Grpc/Dockerfile
 
   postgres:
     image: postgres
